@@ -3,6 +3,27 @@
 /********************
  * HELPER FUNCTIONS *
  ********************/
+const notOrdered = (todo1,todo2) => {
+  if(isNotComplete(todo1)) {
+    return -1;
+  } else if(todo1.complete == todo2.complete) {
+    return 0;
+  } else if(isNotComplete(todo2)) {
+    return 1;
+  }
+}
+
+const priority1Helper = (todo1,todo2) => {
+  if(isHighPriority(todo1)) {
+    return -1;
+  } else if(todo1.priority == todo2.priority) {
+    return 0;
+  } else if(isHighPriority(todo2)) {
+    return 1;
+  }
+}
+
+
 
 const getTodoName = function(todo) {
   return todo.text
@@ -63,6 +84,20 @@ const priority2Only = function (todos) {
 const priority1Only = function (todos) {
   return todos.filter(isLowPriority)
 }
+
+const notCompleteFirst = (todos) => {
+return todos.slice().sort(notOrdered)
+}
+
+const priority2First = (todos) => {
+return todos.slice().sort(priority1Helper)
+}
+
+
+
+  
+
+
 
 if (typeof notCompleteFirst === 'undefined') {
   notCompleteFirst = undefined;

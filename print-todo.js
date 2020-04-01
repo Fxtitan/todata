@@ -20,9 +20,68 @@ const printTodo = function(todo) {
   li.id = todo.id.toString();
 
   // Give the name <p> an event listener to toggle its completeness.
-  li.addEventListener('click', function(event) {
-    event.target.classList.toggle('complete')
-    // TODO: find the correct todo in your data to toggle the completeness of!
-    
-  })
-}
+  }
+
+  let clicked = false;// global, I can use it anywhere
+  document.querySelector(".hide-low-priority").addEventListener('click', () => {
+    if(!clicked){
+      clicked = true;
+      document.querySelector(".hide-low-priority").innerText = "Show Low Priority";
+      currentTodos = priority2Only(todos);
+    }else {
+      clicked = false;
+      document.querySelector(".hide-low-priority").innerText = "Hide Low Priority";
+      currentTodos = namesAndPriorities(todos);
+    }
+    refreshTodos(); //find out why 
+    })
+
+document.querySelector(".toggle-priorities").addEventListener('click', () => {
+  if (document.querySelector(".toggle-priorities").innerText === 'Show Priorities') {
+      document.querySelector(".toggle-priorities").innerText = 'Hide Priorities'
+      //currentTodos = namesAndPriorities(currentTodos);
+      } else {
+      document.querySelector(".toggle-priorities").innerText = 'Show Priorities'
+    }
+})
+
+const button1 = document.querySelector(".hide-complete")
+button1.addEventListener("click", () => {
+  if(button1.innerText === "Hide Complete") {
+    currentTodos = justNotComplete(currentTodos)
+    button1.innerText = "Show Complete";
+  }else{
+    button1.innerText = "Hide Complete";
+  }
+})
+
+const button2 = document.querySelector(".high-priority-first")
+button2.addEventListener("click", () => {
+  if(button2.innerText === "High Priority First") {
+    button2.innerText = "Original Order";
+  }else{
+    button2.innerText = "High Priority First";
+  }
+})
+
+const button3 = document.querySelector(".complete-last")
+button3.addEventListener("click", () => {
+  if(button3.innerText === "Complete Last"){
+    button3.innerText = "Original Order";
+  }else{
+    button3.innerText = "Complete Last";
+  }
+})
+
+
+
+
+
+li.addEventListener("click", toggle) //old project 
+
+
+
+
+
+
+
